@@ -1,111 +1,25 @@
+---
+sitemap: false
+---
+
 [
-
-  
-    {
-      "title"			: "Hello World",
-      "link"			: "http://tedotedo.github.io/so-simple1/blog/hello-world/",
-      "excerpt"		: ""
+{% for post in site.posts %}
+  {% if post.title != null and post.title != empty and post.search_omit != true %}
+    {% if forloop.index > 1 %},{% endif %}{
+      "title"			: {{ post.title | jsonify }},
+      "link"			: "{{ site.url }}{{ post.url }}",
+      "excerpt"		: "{{ post.excerpt }}"
     }
-  
+  {% endif %}
+{% endfor %}
 
-  
-    ,{
-      "title"			: "Override Author Byline Test Post",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/author-override/",
-      "excerpt"		: "An article to test overriding the default site author."
+{% for page in site.pages %}
+  {% if page.layout != 'none' and page.layout != 'none' and page.title != null and page.title != empty and page.search_omit != true %}
+    {% if forloop.index > 1 %},{% endif %}{
+      "title"			: {{ page.title | jsonify }},
+      "link"			: "{{ site.url }}{{ page.url | replace: 'index.html', '' }}",
+      "excerpt"		: "{{ page.excerpt }}"
     }
-  
-
-  
-    ,{
-      "title"			: "Syntax Highlighting Post",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/code-highlighting-post/",
-      "excerpt"		: "Demo post displaying the various ways of highlighting code in Markdown."
-    }
-  
-
-  
-    ,{
-      "title"			: "Sample Link Post",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/sample-link-post/",
-      "excerpt"		: "Example and code for using link posts."
-    }
-  
-
-  
-    ,{
-      "title"			: "A Post with a Video",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/video-post/",
-      "excerpt"		: "Custom written post descriptions are the way to go... if you're not lazy."
-    }
-  
-
-  
-    ,{
-      "title"			: "Post with Large Feature Image and Text",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/readability-feature-post/",
-      "excerpt"		: "Custom written post descriptions are the way to go... if you're not lazy."
-    }
-  
-
-  
-    ,{
-      "title"			: "A Post with Images",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/sample-post-images/",
-      "excerpt"		: "Examples and code for displaying images in posts."
-    }
-  
-
-  
-    ,{
-      "title"			: "Testing Readability with a Bunch of Text",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/readability-post/",
-      "excerpt"		: "A ton of text to test readability."
-    }
-  
-
-  
-    ,{
-      "title"			: "Sample Post",
-      "link"			: "http://tedotedo.github.io/so-simple1/articles/sample-post/",
-      "excerpt"		: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
-    }
-  
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    ,{
-      "title"			: "About the Jekyll Theme",
-      "link"			: "http://tedotedo.github.io/so-simple1/about/",
-      "excerpt"		: "So Simple is a responsive Jekyll theme for your words and images."
-    }
-  
-
-  
-    ,{
-      "title"			: "Theme Setup",
-      "link"			: "http://tedotedo.github.io/so-simple1/theme-setup/",
-      "excerpt"		: "Instructions on how to install and customize the Jekyll theme So Simple."
-    }
-  
-
-  
-
-  
-
-  
-
+  {%endif%}
+{% endfor %}
 ]
